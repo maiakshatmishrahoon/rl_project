@@ -1,4 +1,4 @@
-# 🌊 Folsom Reservoir CMDP — SAC-Lagrangian v5
+# 🌊 Folsom Reservoir CMDP — SAC-Lagrangian 
 
 > Constrained reinforcement learning for reservoir operations using Soft Actor-Critic with Lagrangian dual variables.
 
@@ -186,20 +186,6 @@ All hyperparameters are defined at the top of the notebook:
 **Observation space** (12-dim): normalized storage, head, inflow at 1h/6h/24h scales, inflow trend, hour-of-day and day-of-week sinusoids, cumulative constraint cost signals.
 
 **Action space** (1-dim, continuous [0, 1]): mapped to release ∈ `[0, Q_max]`.
-
----
-
-## 🔬 Fixes Applied in v5
-
-| # | Category | Description |
-|---|---|---|
-| **FIX 1** | 🚨 Critical | Action maps to `[0, Q_max]` — agent CAN release below `Q_min`; eco violations are real. True dual-constraint CMDP: both constraints genuinely active. |
-| **FIX 2** | Calibration | `DELTA_FRACTION=0.6`, `ECO_DELTA_FLOOR=0.001` — thresholds now meaningful since eco violations occur. |
-| **FIX 3** | Stability | `LR_LAMBDA=0.01` (balanced). EMA smoothing `(0.9 old + 0.1 new)` on λ updates prevents spikes and regime switching. |
-| **FIX 4** | Temporal | `LAMBDA_UPDATE_FREQ=720` (1 full episode). Seasonal environment needs complete episode cost estimates. |
-| **FIX 5** | Metrics | `soft=rate>δ`, `hard=rate>2δ` — matches CMDP theory; defensible in reviews/judging. |
-| **FIX 6** | Reward | `reward = η·H_norm·(Q_rel/Q_max)·(1+0.2·sin(2πt/8760))` — season factor adds variability; improves learning signal. |
-| **FIX 7** | Retained | 30-day episodes, trimmed-mean λ, pure hydropower reward base from v4. |
 
 ---
 
