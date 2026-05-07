@@ -68,15 +68,18 @@ In many toy CMDP implementations, constraints are never actually binding. This p
 
 ## Repository Structure
 
-```
+```text
 rl_project/
-├── ReservoirRL_Final.ipynb    # Full training notebook (env + SAC-Lag + training + eval)
-├── ReservoirRL_Final.docx     # Project report / write-up
 ├── results/
-│   ├── cmdp_results.png       # Training/eval figure (6-panel)
-│   ├── results_summary.txt    # Printed metrics table
-│   └── sac_lag_folsom.pt      # Saved model checkpoint
-└── README.md
+│   ├── cmdp_results.png         # 6-panel training/evaluation figure
+│   ├── results_summary.txt      # Printed metrics table
+│   └── sac_lag_folsom.pt        # Saved trained checkpoint
+│
+├── README.md                    # Project documentation
+├── ReservoirRL_Final.ipynb      # Full notebook (env + SAC-Lag + training + eval)
+├── ReservoirRL_Report.pdf       # Final project report
+├── requirements.txt             # Required Python packages
+└── run.sh                       # Convenience script for training/evaluation
 ```
 
 ---
